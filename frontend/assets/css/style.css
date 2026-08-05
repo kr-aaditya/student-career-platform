@@ -532,3 +532,245 @@ body {
     display:none;
 
 }
+
+/* ==========================================
+   WHY CHOOSE PATHPILOT
+========================================== */
+
+#why-pathpilot{
+    padding:100px 0;
+    background:var(--background);
+}
+
+.why-content{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:80px;
+
+}
+
+.why-text{
+
+    flex:1.2;
+
+}
+
+.why-image{
+
+    flex:0.8;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+.benefit{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+    margin-bottom:35px;
+
+}
+.benefit-icon{
+
+    font-size:2rem;
+
+    width:60px;
+
+    height:60px;
+
+    background:white;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    box-shadow:var(--shadow);
+
+    flex-shrink:0;
+
+}
+
+.benefit-text h3{
+
+    margin-bottom:8px;
+
+    font-size:1.3rem;
+
+}
+
+.benefit-text p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+/* ==========================================
+   CTA SECTION
+========================================== */
+
+#cta{
+    padding:100px 0;
+    background:var(--primary-color);
+}
+
+.cta-content{
+    text-align:center;
+    color:white;
+}
+
+.cta-content h2{
+    font-size:2.5rem;
+    margin-bottom:20px;
+}
+
+.cta-content p{
+    max-width:800px;
+    margin:0 auto 35px;
+    line-height:1.8;
+    color:#e5e7eb;
+}
+.cta-content .btn-primary{
+
+    background:white;
+
+    color:var(--primary-color);
+
+}
+
+.cta-content .btn-primary:hover{
+
+    background:#f3f4f6;
+
+}
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+footer{
+
+    background:#111827;
+
+    color:white;
+
+    padding:80px 0 30px;
+
+}
+
+.footer-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:50px;
+
+    margin-bottom:50px;
+
+}
+
+.footer-column{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.footer-column h3{
+
+    margin-bottom:20px;
+
+    font-size:1.3rem;
+
+}
+
+.footer-column p{
+
+    color:#d1d5db;
+
+    line-height:1.8;
+
+    margin-bottom:20px;
+
+}
+
+.footer-column ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.footer-column li{
+
+    margin-bottom:15px;
+
+}
+
+.footer-column a{
+
+    text-decoration:none;
+
+    color:#d1d5db;
+
+    transition:color .3s ease;
+
+}
+
+.footer-column a:hover{
+
+    color:white;
+
+}
+
+.footer-logo{
+
+    color:white !important;
+
+    font-size:1.6rem;
+
+    font-weight:700;
+
+}
+
+hr{
+
+    border:none;
+
+    border-top:1px solid rgba(255,255,255,.15);
+
+    margin:30px 0;
+
+}
+
+.footer-bottom{
+
+    text-align:center;
+
+}
+
+.footer-bottom p{
+
+    color:#9ca3af;
+
+}
