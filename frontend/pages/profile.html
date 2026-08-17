@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Profile | PathPilot</title>
+
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+  <main>
+
+    <section class="profile-section">
+
+        <div class="container">
+
+            <div class="profile-header">
+
+              <h1>Create Your Profile</h1>
+
+                <p>
+                    Tell us about yourself so PathPilot can personalize
+                    your learning and career journey.
+                </p>
+
+              <form class="profile-form" id="profile-form">
+
+                <div class="form-grid">
+
+                    <!-- Full Name -->
+                    <div class="form-group">
+
+                        <label for="full-name">Full Name</label>
+
+                        <input
+                            type="text"
+                            id="full-name"
+                            name="full_name"
+                            placeholder="Enter your full name"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+
+                        <label for="email">Email</label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="Enter your email"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- College -->
+                    <div class="form-group">
+
+                        <label for="college">College / University</label>
+
+                        <input
+                            type="text"
+                            id="college"
+                            name="college"
+                            placeholder="Enter your college or university"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Degree -->
+                    <div class="form-group">
+
+                        <label for="degree">Degree</label>
+
+                        <select id="degree" name="degree" required>
+
+                            <option value="">Select your degree</option>
+                            <option value="btech">B.Tech</option>
+                            <option value="be">B.E.</option>
+                            <option value="bca">BCA</option>
+                            <option value="bsc">B.Sc.</option>
+                            <option value="mca">MCA</option>
+                            <option value="mtech">M.Tech</option>
+                            <option value="other">Other</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Year -->
+                    <div class="form-group">
+
+                        <label for="year">Year of Study</label>
+
+                        <select id="year" name="year" required>
+
+                            <option value="">Select your year</option>
+                            <option value="1">1st Year</option>
+                            <option value="2">2nd Year</option>
+                            <option value="3">3rd Year</option>
+                            <option value="4">4th Year</option>
+
+                        </select>
+
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="form-group">
+
+                        <label for="skills">Skills</label>
+
+                        <input
+                            type="text"
+                            id="skills"
+                            name="skills"
+                            placeholder="e.g. HTML, CSS, JavaScript, Python"
+                            required
+                        >
+
+                    </div>
+
+                    <!-- Career Goal -->
+                    <div class="form-group career-goal-group">
+
+                        <label for="career-goal">Career Goal</label>
+
+                        <select id="career-goal" name="career_goal" required>
+
+                            <option value="">Select your career goal</option>
+                            <option value="web-development">Web Development</option>
+                            <option value="ai-ml">AI / ML</option>
+                            <option value="data-science">Data Science</option>
+                            <option value="cloud-devops">Cloud / DevOps</option>
+                            <option value="cybersecurity">Cybersecurity</option>
+                            <option value="mobile-development">Mobile Development</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <button type="submit" class="btn-primary">
+                    Save Profile
+                </button>
+
+            </form>
+              <div id="profile-message" class="profile-message"></div>
+            </div>
+
+        </div>
+
+    </section>
+
+  </main>
+<script src="../assets/js/script.js"></script>
+</body>
+
+</html>
