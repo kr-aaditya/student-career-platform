@@ -2,15 +2,22 @@
    NAVBAR
 ========================================== */
 
-const menuToggle = document.querySelector(".menu-toggle");
-const navLinks = document.querySelector(".nav-links");
-const navButtons = document.querySelector(".nav-buttons");
+const menuToggle =
+    document.querySelector(".menu-toggle");
+
+const navLinks =
+    document.querySelector(".nav-links");
+
+const navButtons =
+    document.querySelector(".nav-buttons");
+
 
 if (menuToggle) {
 
     menuToggle.addEventListener("click", function () {
 
         navLinks.classList.toggle("active");
+
         navButtons.classList.toggle("active");
 
     });
@@ -28,11 +35,13 @@ const profileForm =
 const profileMessage =
     document.getElementById("profile-message");
 
+
 if (profileForm) {
 
     profileForm.addEventListener("submit", function (event) {
 
         event.preventDefault();
+
 
         const profile = {
 
@@ -59,13 +68,19 @@ if (profileForm) {
 
         };
 
+
         localStorage.setItem(
             "pathpilotProfile",
             JSON.stringify(profile)
         );
 
-        profileMessage.textContent =
-            "✅ Profile saved successfully!";
+
+        if (profileMessage) {
+
+            profileMessage.textContent =
+                "✅ Profile saved successfully!";
+
+        }
 
     });
 
@@ -262,6 +277,142 @@ if (savedProfile) {
 
 
 /* ==========================================
+   CAREER ROADMAP DATA
+========================================== */
+
+const roadmaps = {
+
+    "ai-ml": [
+        "Python Fundamentals",
+        "NumPy & Pandas",
+        "Machine Learning",
+        "Deep Learning",
+        "AI Projects"
+    ],
+
+    "web-development": [
+        "HTML & CSS",
+        "JavaScript",
+        "Frontend Development",
+        "Backend Development",
+        "Full Stack Project"
+    ],
+
+    "data-science": [
+        "Python for Data Science",
+        "NumPy & Pandas",
+        "Data Visualization",
+        "Statistics",
+        "Data Science Projects"
+    ],
+
+    "cloud-devops": [
+        "Linux Fundamentals",
+        "Networking",
+        "Cloud Fundamentals",
+        "Docker",
+        "CI/CD & DevOps Project"
+    ],
+
+    "cybersecurity": [
+        "Networking Fundamentals",
+        "Linux Fundamentals",
+        "Cybersecurity Basics",
+        "Web Security",
+        "Security Projects"
+    ],
+
+    "mobile-development": [
+        "Programming Fundamentals",
+        "Mobile UI Development",
+        "App Navigation",
+        "APIs & Databases",
+        "Mobile App Project"
+    ]
+
+};
+
+
+/* ==========================================
+   GENERATE CAREER ROADMAP
+========================================== */
+
+const learningModulesContainer =
+    document.getElementById("learning-modules");
+
+const roadmapTitle =
+    document.getElementById("roadmap-title");
+
+
+if (learningModulesContainer && savedProfile) {
+
+    const profile =
+        JSON.parse(savedProfile);
+
+    const selectedRoadmap =
+        roadmaps[profile.careerGoal];
+
+
+    if (selectedRoadmap) {
+
+        /* Update roadmap title */
+
+        if (roadmapTitle) {
+
+            roadmapTitle.textContent =
+                `${careerGoalNames[profile.careerGoal]} Roadmap`;
+
+        }
+
+
+        /* Generate modules */
+
+        selectedRoadmap.forEach((moduleName, index) => {
+
+            const module =
+                document.createElement("div");
+
+            module.classList.add("learning-module");
+
+
+            /* First two modules completed by default */
+
+            if (index < 2) {
+
+                module.classList.add("completed");
+
+            }
+
+
+            module.innerHTML = `
+
+                <span class="module-status">
+                    ${index < 2 ? "✓" : "○"}
+                </span>
+
+                <div>
+
+                    <h4>${moduleName}</h4>
+
+                    <p>
+                        Continue learning and building your skills.
+                    </p>
+
+                </div>
+
+            `;
+
+
+            learningModulesContainer.appendChild(module);
+
+        });
+
+    }
+
+}
+
+
+/* ==========================================
    LEARNING PROGRESS
 ========================================== */
 
@@ -275,15 +426,31 @@ const progressFill =
     document.getElementById("progress-fill");
 
 
-/* Get saved learning progress */
+/* Get current career */
+
+const currentCareer =
+    savedProfile
+        ? JSON.parse(savedProfile).careerGoal
+        : null;
+
+
+/* Get all saved career progress */
 
 const savedProgress =
     localStorage.getItem("pathpilotProgress");
 
 
-let learningProgress =
+let allLearningProgress =
     savedProgress
         ? JSON.parse(savedProgress)
+        : {};
+
+
+/* Get progress for current career */
+
+let learningProgress =
+    currentCareer && allLearningProgress[currentCareer]
+        ? allLearningProgress[currentCareer]
         : {};
 
 
@@ -297,10 +464,8 @@ learningModules.forEach((module, index) => {
 
         module.classList.add("completed");
 
-
         const status =
             module.querySelector(".module-status");
-
 
         if (status) {
 
@@ -324,7 +489,6 @@ function updateLearningProgress() {
             ".learning-module.completed"
         ).length;
 
-
     const totalModules =
         learningModules.length;
 
@@ -344,7 +508,7 @@ function updateLearningProgress() {
         );
 
 
-    /* Update percentage text */
+    /* Update percentage */
 
     if (progressPercent) {
 
@@ -370,70 +534,92 @@ function updateLearningProgress() {
    MODULE CLICK
 ========================================== */
 
-learningModules.forEach((module, index) => {
+if (learningModulesContainer) {
 
-    module.addEventListener("click", function () {
+    learningModulesContainer.addEventListener(
+        "click",
+        function (event) {
 
-
-        /* Toggle completed state */
-
-        module.classList.toggle("completed");
-
-
-        const status =
-            module.querySelector(".module-status");
+            const module =
+                event.target.closest(".learning-module");
 
 
-        /* If completed */
+            /* Ignore clicks outside a module */
 
-        if (module.classList.contains("completed")) {
+            if (
+                !module ||
+                !learningModulesContainer.contains(module)
+            ) {
 
-            if (status) {
-
-                status.textContent = "✓";
+                return;
 
             }
 
 
-            learningProgress[index] = true;
+            /* Find module index */
 
-        }
+            const index =
+                Array.from(learningModules)
+                    .indexOf(module);
 
 
-        /* If not completed */
+            if (
+                index === -1 ||
+                !currentCareer
+            ) {
 
-        else {
-
-            if (status) {
-
-                status.textContent = "○";
+                return;
 
             }
 
 
-            learningProgress[index] = false;
+            /* Toggle completion */
+
+            module.classList.toggle("completed");
+
+
+            const isCompleted =
+                module.classList.contains("completed");
+
+
+            /* Update status symbol */
+
+            const status =
+                module.querySelector(".module-status");
+
+
+            if (status) {
+
+                status.textContent =
+                    isCompleted ? "✓" : "○";
+
+            }
+
+
+            /* Save current career progress */
+
+            learningProgress[index] =
+                isCompleted;
+
+
+            allLearningProgress[currentCareer] =
+                learningProgress;
+
+
+            localStorage.setItem(
+                "pathpilotProgress",
+                JSON.stringify(allLearningProgress)
+            );
+
+
+            /* Recalculate progress */
+
+            updateLearningProgress();
 
         }
+    );
 
-
-        /* Save progress */
-
-        localStorage.setItem(
-
-            "pathpilotProgress",
-
-            JSON.stringify(learningProgress)
-
-        );
-
-
-        /* Recalculate progress */
-
-        updateLearningProgress();
-
-    });
-
-});
+}
 
 
 /* ==========================================
