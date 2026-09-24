@@ -36,6 +36,54 @@ const profileMessage =
     document.getElementById("profile-message");
 
 
+/* ==========================================
+   LOAD SAVED PROFILE INTO FORM
+========================================== */
+
+const savedProfileData =
+    localStorage.getItem("pathpilotProfile");
+
+
+if (profileForm && savedProfileData) {
+
+    const profile =
+        JSON.parse(savedProfileData);
+
+
+    document.getElementById("full-name").value =
+        profile.name || "";
+
+
+    document.getElementById("email").value =
+        profile.email || "";
+
+
+    document.getElementById("college").value =
+        profile.college || "";
+
+
+    document.getElementById("degree").value =
+        profile.degree || "";
+
+
+    document.getElementById("year").value =
+        profile.year || "";
+
+
+    document.getElementById("skills").value =
+        profile.skills || "";
+
+
+    document.getElementById("career-goal").value =
+        profile.careerGoal || "";
+
+}
+
+
+/* ==========================================
+   SAVE PROFILE
+========================================== */
+
 if (profileForm) {
 
     profileForm.addEventListener("submit", function (event) {
@@ -94,23 +142,30 @@ if (profileForm) {
 const savedProfile =
     localStorage.getItem("pathpilotProfile");
 
+
 const careerGoalDisplay =
     document.getElementById("career-goal-display");
+
 
 const userNameDisplay =
     document.getElementById("user-name");
 
+
 const profileCollege =
     document.getElementById("profile-college");
+
 
 const profileDegree =
     document.getElementById("profile-degree");
 
+
 const profileYear =
     document.getElementById("profile-year");
 
+
 const profileSkills =
     document.getElementById("profile-skills");
+
 
 const profileEmail =
     document.getElementById("profile-email");
@@ -136,6 +191,7 @@ const careerGoalNames = {
 
 };
 
+
 /* ==========================================
    LEARNING PAGE - CAREER
 ========================================== */
@@ -157,6 +213,10 @@ if (careerTitle && savedProfile) {
 }
 
 
+/* ==========================================
+   DEGREE DISPLAY NAMES
+========================================== */
+
 const degreeNames = {
 
     "btech": "B.Tech",
@@ -176,6 +236,10 @@ const degreeNames = {
 };
 
 
+/* ==========================================
+   YEAR DISPLAY NAMES
+========================================== */
+
 const yearNames = {
 
     "1": "1st Year",
@@ -190,7 +254,7 @@ const yearNames = {
 
 
 /* ==========================================
-   LOAD SAVED PROFILE
+   LOAD SAVED PROFILE - DASHBOARD
 ========================================== */
 
 if (savedProfile) {
@@ -303,51 +367,92 @@ if (savedProfile) {
 const roadmaps = {
 
     "ai-ml": [
+
         "Python Fundamentals",
+
         "NumPy & Pandas",
+
         "Machine Learning",
+
         "Deep Learning",
+
         "AI Projects"
+
     ],
+
 
     "web-development": [
+
         "HTML & CSS",
+
         "JavaScript",
+
         "Frontend Development",
+
         "Backend Development",
+
         "Full Stack Project"
+
     ],
+
 
     "data-science": [
+
         "Python for Data Science",
+
         "NumPy & Pandas",
+
         "Data Visualization",
+
         "Statistics",
+
         "Data Science Projects"
+
     ],
+
 
     "cloud-devops": [
+
         "Linux Fundamentals",
+
         "Networking",
+
         "Cloud Fundamentals",
+
         "Docker",
+
         "CI/CD & DevOps Project"
+
     ],
+
 
     "cybersecurity": [
+
         "Networking Fundamentals",
+
         "Linux Fundamentals",
+
         "Cybersecurity Basics",
+
         "Web Security",
+
         "Security Projects"
+
     ],
 
+
     "mobile-development": [
+
         "Programming Fundamentals",
+
         "Mobile UI Development",
+
         "App Navigation",
+
         "APIs & Databases",
+
         "Mobile App Project"
+
     ]
 
 };
@@ -360,6 +465,7 @@ const roadmaps = {
 const learningModulesContainer =
     document.getElementById("learning-modules");
 
+
 const roadmapTitle =
     document.getElementById("roadmap-title");
 
@@ -369,11 +475,13 @@ if (learningModulesContainer && savedProfile) {
     const profile =
         JSON.parse(savedProfile);
 
+
     const selectedRoadmap =
         roadmaps[profile.careerGoal];
 
 
     if (selectedRoadmap) {
+
 
         /* Update roadmap title */
 
@@ -391,6 +499,7 @@ if (learningModulesContainer && savedProfile) {
 
             const module =
                 document.createElement("div");
+
 
             module.classList.add("learning-module");
 
@@ -431,6 +540,7 @@ if (learningModulesContainer && savedProfile) {
 
 }
 
+
 /* ==========================================
    LEARNING PAGE - MODULES
 ========================================== */
@@ -444,6 +554,7 @@ if (learningPageModules && savedProfile) {
     const profile =
         JSON.parse(savedProfile);
 
+
     const selectedRoadmap =
         roadmaps[profile.careerGoal];
 
@@ -454,6 +565,7 @@ if (learningPageModules && savedProfile) {
 
             const module =
                 document.createElement("div");
+
 
             module.classList.add("learning-page-module");
 
@@ -511,11 +623,17 @@ const learningContent = {
             "Build a strong foundation in Python programming.",
 
         topics: [
+
             "Variables and Data Types",
+
             "Conditional Statements",
+
             "Loops",
+
             "Functions",
+
             "Lists, Tuples and Dictionaries"
+
         ]
 
     },
@@ -529,11 +647,17 @@ const learningContent = {
             "Learn the essential Python libraries used for data manipulation and analysis.",
 
         topics: [
+
             "NumPy Arrays",
+
             "Array Operations",
+
             "Pandas Series and DataFrames",
+
             "Data Cleaning",
+
             "Reading and Writing Data"
+
         ]
 
     },
@@ -547,11 +671,17 @@ const learningContent = {
             "Learn how machines identify patterns in data and make predictions.",
 
         topics: [
+
             "Introduction to Machine Learning",
+
             "Supervised and Unsupervised Learning",
+
             "Training and Testing Data",
+
             "Regression and Classification",
+
             "Model Evaluation"
+
         ]
 
     },
@@ -565,11 +695,17 @@ const learningContent = {
             "Explore neural networks and the foundations of modern deep learning.",
 
         topics: [
+
             "Introduction to Neural Networks",
+
             "Neurons and Layers",
+
             "Activation Functions",
+
             "Forward and Backpropagation",
+
             "Building Neural Networks"
+
         ]
 
     },
@@ -583,11 +719,17 @@ const learningContent = {
             "Apply your AI and machine learning knowledge by building practical projects.",
 
         topics: [
+
             "Choosing an AI Project",
+
             "Collecting and Preparing Data",
+
             "Training an AI Model",
+
             "Building an Application",
+
             "Deploying Your Project"
+
         ]
 
     }
@@ -694,6 +836,7 @@ if (learningPageModules && moduleLearningContent) {
 
 }
 
+
 /* ==========================================
    LEARNING PROGRESS
 ========================================== */
@@ -701,8 +844,10 @@ if (learningPageModules && moduleLearningContent) {
 const learningModules =
     document.querySelectorAll(".learning-module");
 
+
 const progressPercent =
     document.getElementById("progress-percent");
+
 
 const progressFill =
     document.getElementById("progress-fill");
@@ -746,8 +891,10 @@ learningModules.forEach((module, index) => {
 
         module.classList.add("completed");
 
+
         const status =
             module.querySelector(".module-status");
+
 
         if (status) {
 
@@ -770,6 +917,7 @@ function updateLearningProgress() {
         document.querySelectorAll(
             ".learning-module.completed"
         ).length;
+
 
     const totalModules =
         learningModules.length;
@@ -997,6 +1145,7 @@ if (moduleLearningContent) {
 
             button.textContent =
                 "✓ Completed";
+
 
             button.disabled = true;
 

@@ -1435,3 +1435,13 @@ hr{
     }
 
 }
+
+/* ==========================================
+   EDIT PROFILE BUTTON
+========================================== */
+
+.edit-profile-btn {
+    display: block;
+    width: fit-content;
+    margin: 12px auto 0;
+}
