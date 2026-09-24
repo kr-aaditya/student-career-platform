@@ -136,6 +136,26 @@ const careerGoalNames = {
 
 };
 
+/* ==========================================
+   LEARNING PAGE - CAREER
+========================================== */
+
+const careerTitle =
+    document.getElementById("career-title");
+
+
+if (careerTitle && savedProfile) {
+
+    const profile =
+        JSON.parse(savedProfile);
+
+
+    careerTitle.textContent =
+        careerGoalNames[profile.careerGoal] ||
+        profile.careerGoal;
+
+}
+
 
 const degreeNames = {
 
@@ -411,6 +431,268 @@ if (learningModulesContainer && savedProfile) {
 
 }
 
+/* ==========================================
+   LEARNING PAGE - MODULES
+========================================== */
+
+const learningPageModules =
+    document.getElementById("learning-page-modules");
+
+
+if (learningPageModules && savedProfile) {
+
+    const profile =
+        JSON.parse(savedProfile);
+
+    const selectedRoadmap =
+        roadmaps[profile.careerGoal];
+
+
+    if (selectedRoadmap) {
+
+        selectedRoadmap.forEach((moduleName, index) => {
+
+            const module =
+                document.createElement("div");
+
+            module.classList.add("learning-page-module");
+
+
+            module.innerHTML = `
+
+                <div class="learning-page-module-number">
+                    ${index + 1}
+                </div>
+
+                <div class="learning-page-module-content">
+
+                    <h3>
+                        ${moduleName}
+                    </h3>
+
+                    <p>
+                        Learn the fundamentals and build
+                        practical skills in this area.
+                    </p>
+
+                </div>
+
+                <button class="module-start-btn">
+                    Start Learning
+                </button>
+
+            `;
+
+
+            learningPageModules.appendChild(module);
+
+        });
+
+    }
+
+}
+
+
+/* ==========================================
+   LEARNING PAGE - MODULE CONTENT
+========================================== */
+
+const moduleLearningContent =
+    document.getElementById("module-learning-content");
+
+
+const learningContent = {
+
+    "Python Fundamentals": {
+
+        title: "Python Fundamentals",
+
+        description:
+            "Build a strong foundation in Python programming.",
+
+        topics: [
+            "Variables and Data Types",
+            "Conditional Statements",
+            "Loops",
+            "Functions",
+            "Lists, Tuples and Dictionaries"
+        ]
+
+    },
+
+
+    "NumPy & Pandas": {
+
+        title: "NumPy & Pandas",
+
+        description:
+            "Learn the essential Python libraries used for data manipulation and analysis.",
+
+        topics: [
+            "NumPy Arrays",
+            "Array Operations",
+            "Pandas Series and DataFrames",
+            "Data Cleaning",
+            "Reading and Writing Data"
+        ]
+
+    },
+
+
+    "Machine Learning": {
+
+        title: "Machine Learning",
+
+        description:
+            "Learn how machines identify patterns in data and make predictions.",
+
+        topics: [
+            "Introduction to Machine Learning",
+            "Supervised and Unsupervised Learning",
+            "Training and Testing Data",
+            "Regression and Classification",
+            "Model Evaluation"
+        ]
+
+    },
+
+
+    "Deep Learning": {
+
+        title: "Deep Learning",
+
+        description:
+            "Explore neural networks and the foundations of modern deep learning.",
+
+        topics: [
+            "Introduction to Neural Networks",
+            "Neurons and Layers",
+            "Activation Functions",
+            "Forward and Backpropagation",
+            "Building Neural Networks"
+        ]
+
+    },
+
+
+    "AI Projects": {
+
+        title: "AI Projects",
+
+        description:
+            "Apply your AI and machine learning knowledge by building practical projects.",
+
+        topics: [
+            "Choosing an AI Project",
+            "Collecting and Preparing Data",
+            "Training an AI Model",
+            "Building an Application",
+            "Deploying Your Project"
+        ]
+
+    }
+
+};
+
+
+/* ==========================================
+   START LEARNING BUTTON
+========================================== */
+
+if (learningPageModules && moduleLearningContent) {
+
+    learningPageModules.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(".module-start-btn");
+
+
+            /* Ignore clicks outside buttons */
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            const module =
+                button.closest(".learning-page-module");
+
+
+            if (!module) {
+
+                return;
+
+            }
+
+
+            const moduleTitle =
+                module.querySelector(
+                    ".learning-page-module-content h3"
+                ).textContent.trim();
+
+
+            const content =
+                learningContent[moduleTitle];
+
+
+            /* If content exists */
+
+            if (content) {
+
+                moduleLearningContent.innerHTML = `
+
+                    <div class="module-content-card">
+
+                        <h2>
+                            ${content.title}
+                        </h2>
+
+                        <p>
+                            ${content.description}
+                        </p>
+
+                        <h3>
+                            What you will learn
+                        </h3>
+
+                        <ul>
+
+                            ${content.topics
+                                .map(topic => `
+                                    <li>${topic}</li>
+                                `)
+                                .join("")}
+
+                        </ul>
+
+                        <button
+                            class="btn-primary"
+                            id="module-complete-btn"
+                        >
+                            Mark as Complete
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                /* Scroll to content */
+
+                moduleLearningContent.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+            }
+
+        }
+    );
+
+}
 
 /* ==========================================
    LEARNING PROGRESS
@@ -627,3 +909,103 @@ if (learningModulesContainer) {
 ========================================== */
 
 updateLearningProgress();
+
+
+/* ==========================================
+   MARK MODULE AS COMPLETE
+========================================== */
+
+if (moduleLearningContent) {
+
+    moduleLearningContent.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest("#module-complete-btn");
+
+
+            /* Ignore other clicks */
+
+            if (!button) {
+
+                return;
+
+            }
+
+
+            if (!currentCareer) {
+
+                return;
+
+            }
+
+
+            /* Get the module title */
+
+            const moduleTitle =
+                moduleLearningContent
+                    .querySelector(".module-content-card h2")
+                    .textContent
+                    .trim();
+
+
+            /* Get current career roadmap */
+
+            const currentRoadmap =
+                roadmaps[currentCareer];
+
+
+            if (!currentRoadmap) {
+
+                return;
+
+            }
+
+
+            /* Find module index */
+
+            const moduleIndex =
+                currentRoadmap.indexOf(moduleTitle);
+
+
+            if (moduleIndex === -1) {
+
+                return;
+
+            }
+
+
+            /* Mark module as completed */
+
+            learningProgress[moduleIndex] = true;
+
+
+            /* Save progress for current career */
+
+            allLearningProgress[currentCareer] =
+                learningProgress;
+
+
+            localStorage.setItem(
+                "pathpilotProgress",
+                JSON.stringify(allLearningProgress)
+            );
+
+
+            /* Update button */
+
+            button.textContent =
+                "✓ Completed";
+
+            button.disabled = true;
+
+
+            /* Update dashboard progress if visible */
+
+            updateLearningProgress();
+
+        }
+    );
+
+}
