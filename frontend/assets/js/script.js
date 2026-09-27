@@ -457,7 +457,526 @@ const roadmaps = {
 
 };
 
+/* ==========================================
+   CAREER PROJECT DATA
+========================================== */
 
+const projects = {
+
+    "ai-ml": [
+
+        {
+            title: "House Price Prediction",
+
+            description:
+                "Build a machine learning model that predicts house prices from property features.",
+
+            technologies: [
+                "Python",
+                "Pandas",
+                "Scikit-learn"
+            ],
+
+            difficulty: "Beginner"
+        },
+
+        {
+            title: "Image Classification",
+            description:
+                "Train a model to classify images into different categories."
+        },
+
+        {
+            title: "Sentiment Analysis",
+            description:
+                "Build a model that determines whether text expresses positive or negative sentiment."
+        },
+
+        {
+            title: "End-to-End ML Project",
+            description:
+                "Build and deploy a complete machine learning application."
+        }
+
+    ],
+
+
+    "web-development": [
+
+        {
+            title: "Portfolio Website",
+            description:
+                "Build a personal portfolio website to showcase your skills and projects."
+        },
+
+        {
+            title: "Task Manager",
+            description:
+                "Build a web application for creating and managing tasks."
+        },
+
+        {
+            title: "E-Commerce Website",
+            description:
+                "Build an online store with products, users and shopping functionality."
+        },
+
+        {
+            title: "Full Stack Application",
+            description:
+                "Build a complete application with a frontend, backend and database."
+        }
+
+    ],
+
+
+    "data-science": [
+
+        {
+            title: "Data Analysis Project",
+            description:
+                "Analyze a real-world dataset and discover useful patterns and insights."
+        },
+
+        {
+            title: "Data Visualization Dashboard",
+            description:
+                "Create an interactive dashboard to visualize important data."
+        },
+
+        {
+            title: "Customer Analysis",
+            description:
+                "Analyze customer data to identify patterns and useful business insights."
+        },
+
+        {
+            title: "End-to-End Data Science Project",
+            description:
+                "Complete a data science project from data collection to insights."
+        }
+
+    ],
+
+
+    "cloud-devops": [
+
+        {
+            title: "Dockerized Application",
+            description:
+                "Containerize a web application using Docker."
+        },
+
+        {
+            title: "CI/CD Pipeline",
+            description:
+                "Create an automated pipeline for building and deploying an application."
+        },
+
+        {
+            title: "Cloud Deployment",
+            description:
+                "Deploy an application to a cloud platform."
+        },
+
+        {
+            title: "DevOps Project",
+            description:
+                "Build an application with automated deployment and monitoring."
+        }
+
+    ],
+
+
+    "cybersecurity": [
+
+        {
+            title: "Network Security Scanner",
+            description:
+                "Build a learning project that analyzes network information."
+        },
+
+        {
+            title: "Password Security Tool",
+            description:
+                "Build a tool that demonstrates password strength and security concepts."
+        },
+
+        {
+            title: "Web Security Project",
+            description:
+                "Study common web security concepts through a controlled project."
+        },
+
+        {
+            title: "Cybersecurity Lab",
+            description:
+                "Build a practical cybersecurity learning environment."
+        }
+
+    ],
+
+
+    "mobile-development": [
+
+        {
+            title: "To-Do Mobile App",
+            description:
+                "Build a mobile application for managing daily tasks."
+        },
+
+        {
+            title: "Expense Tracker",
+            description:
+                "Build a mobile application for tracking expenses."
+        },
+
+        {
+            title: "Weather App",
+            description:
+                "Build a mobile application that displays weather information using an API."
+        },
+
+        {
+            title: "Full Mobile Application",
+            description:
+                "Build and deploy a complete mobile application."
+        }
+
+    ]
+
+};
+
+const projectSteps = {
+
+    "House Price Prediction": [
+        "Understand the problem",
+        "Load the dataset",
+        "Clean and prepare the data",
+        "Explore the dataset",
+        "Train the machine learning model",
+        "Evaluate the model",
+        "Build the final application"
+    ],
+
+    "Image Classification": [
+        "Understand image classification",
+        "Collect the image dataset",
+        "Prepare and preprocess images",
+        "Train the classification model",
+        "Evaluate the model",
+        "Test the model with new images"
+    ],
+
+    "Sentiment Analysis": [
+        "Understand sentiment analysis",
+        "Collect text data",
+        "Clean and preprocess the text",
+        "Convert text into numerical features",
+        "Train the classification model",
+        "Evaluate the model",
+        "Test the model with new text"
+    ],
+
+    "End-to-End ML Project": [
+        "Choose the problem",
+        "Collect the dataset",
+        "Clean and prepare the data",
+        "Train the model",
+        "Evaluate the model",
+        "Build the application",
+        "Deploy the application"
+    ]
+
+};
+/* ==========================================
+   GENERATE PROJECT CARDS
+========================================== */
+
+const projectsGrid =
+    document.getElementById("projects-grid");
+
+const projectDetails =
+    document.getElementById("project-details");
+
+
+if (projectsGrid && savedProfile) {
+
+    const profile =
+        JSON.parse(savedProfile);
+
+
+    const selectedProjects =
+        projects[profile.careerGoal];
+
+
+    if (selectedProjects) {
+
+        selectedProjects.forEach((project, index) => {
+
+            const projectCard =
+                document.createElement("div");
+
+
+            projectCard.classList.add("project-card");
+
+
+            projectCard.innerHTML = `
+
+                <h3>
+                    ${project.title}
+                </h3>
+
+                <p>
+                    ${project.description}
+                </p>
+
+                <button
+                    class="project-btn"
+                    data-project-index="${index}"
+                >
+                    View Project
+                </button>
+
+            `;
+
+
+            projectsGrid.appendChild(projectCard);
+
+        });
+
+    }
+
+}
+
+/* ==========================================
+   PROJECT DETAILS
+========================================== */
+
+if (projectsGrid) {
+
+    projectsGrid.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(
+                    ".project-btn, .project-start-btn"
+                );
+
+            if (!button) {
+                return;
+            }
+
+
+            const projectIndex =
+                Number(
+                    button.dataset.projectIndex
+                );
+
+
+            const profile =
+                JSON.parse(savedProfile);
+
+
+            const selectedProjects =
+                projects[profile.careerGoal];
+
+
+            const project =
+                selectedProjects[projectIndex];
+
+
+            if (!project) {
+                return;
+            }
+
+
+            /* ==================================
+               START PROJECT
+            ================================== */
+
+            if (
+                button.classList.contains(
+                    "project-start-btn"
+                )
+            ) {
+
+                const steps =
+                    projectSteps[project.title];
+
+
+                if (!steps) {
+                    return;
+                }
+
+
+                projectDetails.innerHTML = `
+
+                    <div class="project-details-card">
+
+                        <h2>
+                            ${project.title} - Project Steps
+                        </h2>
+
+                        <ol>
+
+                            ${steps
+                                .map(step => `
+                                    <li>
+                                        ${step}
+                                    </li>
+                                `)
+                                .join("")}
+
+                        </ol>
+
+                    </div>
+
+                `;
+
+
+                projectDetails.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+
+                return;
+            }
+
+
+            /* ==================================
+               VIEW PROJECT
+            ================================== */
+
+            projectDetails.innerHTML = `
+
+                <div class="project-details-card">
+
+                    <h2>
+                        ${project.title}
+                    </h2>
+
+                    <p>
+                        ${project.description}
+                    </p>
+
+                    <p>
+                        <strong>Difficulty:</strong>
+                        ${project.difficulty || "Not specified"}
+                    </p>
+
+                    ${
+                        project.technologies
+                            ? `
+                                <h3>
+                                    Technologies
+                                </h3>
+
+                                <ul>
+
+                                    ${project.technologies
+                                        .map(technology => `
+                                            <li>
+                                                ${technology}
+                                            </li>
+                                        `)
+                                        .join("")}
+
+                                </ul>
+                            `
+                            : ""
+                    }
+
+
+                    <button
+                        class="project-start-btn"
+                        data-project-index="${projectIndex}"
+                    >
+                        Start Project
+                    </button>
+
+                </div>
+
+            `;
+
+
+            projectDetails.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
+if (projectDetails) {
+
+    projectDetails.addEventListener(
+        "click",
+        function (event) {
+
+            const button =
+                event.target.closest(".project-start-btn");
+
+            if (!button) {
+                return;
+            }
+
+            const projectIndex =
+                Number(button.dataset.projectIndex);
+
+            const profile =
+                JSON.parse(savedProfile);
+
+            const selectedProjects =
+                projects[profile.careerGoal];
+
+            const project =
+                selectedProjects[projectIndex];
+
+            if (!project) {
+                return;
+            }
+
+            const steps =
+                projectSteps[project.title];
+
+            if (!steps) {
+                return;
+            }
+
+            projectDetails.innerHTML = `
+
+                <div class="project-details-card">
+
+                    <h2>
+                        ${project.title} - Project Steps
+                    </h2>
+
+                    <ol>
+
+                        ${steps
+                            .map(step => `
+                                <li>
+                                    ${step}
+                                </li>
+                            `)
+                            .join("")}
+
+                    </ol>
+
+                </div>
+
+            `;
+
+            projectDetails.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
 /* ==========================================
    GENERATE CAREER ROADMAP
 ========================================== */
