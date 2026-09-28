@@ -689,6 +689,16 @@ const projectSteps = {
     ]
 
 };
+
+let projectProgress = {};
+
+const savedProjectProgress =
+    localStorage.getItem("pathpilotProjectProgress");
+
+if (savedProjectProgress) {
+    projectProgress =
+        JSON.parse(savedProjectProgress);
+}
 /* ==========================================
    GENERATE PROJECT CARDS
 ========================================== */
@@ -821,15 +831,26 @@ if (projectsGrid) {
 
                         <ol>
 
-                            ${steps
-                                .map(step => `
-                                    <li>
-                                        ${step}
-                                    </li>
-                                `)
-                                .join("")}
+                ${steps
+                    .map((step, index) => `
+                        <li>
 
-                        </ol>
+                            <span>
+                                ${step}
+                            </span>
+
+                            <button
+                                class="project-step-btn"
+                                data-step-index="${index}"
+                            >
+                                Complete
+                            </button>
+
+                        </li>
+                    `)
+                    .join("")}
+
+            </ol>
 
                     </div>
 
@@ -916,9 +937,58 @@ if (projectDetails) {
         function (event) {
 
             const button =
-                event.target.closest(".project-start-btn");
+                event.target.closest(".project-start-btn, .project-step-btn");
 
             if (!button) {
+                return;
+            }
+            if (button.classList.contains("project-step-btn")) {
+
+                const stepIndex =
+                    Number(button.dataset.stepIndex);
+
+                const profile =
+                    JSON.parse(savedProfile);
+
+                const selectedProjects =
+                    projects[profile.careerGoal];
+
+                const projectDetailsCard =
+                        projectDetails.querySelector(
+                            ".project-details-card"
+                        );
+
+                    if (!projectDetailsCard) {
+                        return;
+                    }
+
+                    const projectIndex =
+                        Number(
+                            projectDetailsCard.dataset.projectIndex
+                        );
+
+                const project =
+                    selectedProjects[projectIndex];
+
+                if (!project) {
+                    return;
+                }
+
+                if (!projectProgress[project.title]) {
+                    projectProgress[project.title] = {};
+                }
+
+                projectProgress[project.title][stepIndex] = true;
+
+                localStorage.setItem(
+                    "pathpilotProjectProgress",
+                    JSON.stringify(projectProgress)
+                );
+
+                button.textContent = "✓ Completed";
+
+                button.disabled = true;
+
                 return;
             }
 
@@ -947,7 +1017,8 @@ if (projectDetails) {
 
             projectDetails.innerHTML = `
 
-                <div class="project-details-card">
+                <div class="project-details-card"
+                data-project-index="${projectIndex}">
 
                     <h2>
                         ${project.title} - Project Steps
@@ -956,11 +1027,31 @@ if (projectDetails) {
                     <ol>
 
                         ${steps
-                            .map(step => `
-                                <li>
-                                    ${step}
-                                </li>
-                            `)
+                            .map((step, index) => {
+
+                                const isCompleted =
+                                    projectProgress[project.title] &&
+                                    projectProgress[project.title][index];
+
+                                return `
+                                    <li>
+
+                                        <span>
+                                            ${step}
+                                        </span>
+
+                                        <button
+                                            class="project-step-btn"
+                                            data-step-index="${index}"
+                                            ${isCompleted ? "disabled" : ""}
+                                        >
+                                            ${isCompleted ? "✓ Completed" : "Complete"}
+                                        </button>
+
+                                    </li>
+                                `;
+
+                            })
                             .join("")}
 
                     </ol>
