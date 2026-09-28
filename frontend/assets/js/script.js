@@ -770,101 +770,27 @@ if (projectsGrid) {
         function (event) {
 
             const button =
-                event.target.closest(
-                    ".project-btn, .project-start-btn"
-                );
+                event.target.closest(".project-btn");
 
             if (!button) {
                 return;
             }
 
-
             const projectIndex =
-                Number(
-                    button.dataset.projectIndex
-                );
-
+                Number(button.dataset.projectIndex);
 
             const profile =
                 JSON.parse(savedProfile);
 
-
             const selectedProjects =
                 projects[profile.careerGoal];
-
 
             const project =
                 selectedProjects[projectIndex];
 
-
             if (!project) {
                 return;
             }
-
-
-            /* ==================================
-               START PROJECT
-            ================================== */
-
-            if (
-                button.classList.contains(
-                    "project-start-btn"
-                )
-            ) {
-
-                const steps =
-                    projectSteps[project.title];
-
-
-                if (!steps) {
-                    return;
-                }
-
-
-                projectDetails.innerHTML = `
-
-                    <div class="project-details-card">
-
-                        <h2>
-                            ${project.title} - Project Steps
-                        </h2>
-
-                        <ol>
-
-                ${steps
-                    .map((step, index) => `
-                        <li>
-
-                            <span>
-                                ${step}
-                            </span>
-
-                            <button
-                                class="project-step-btn"
-                                data-step-index="${index}"
-                            >
-                                Complete
-                            </button>
-
-                        </li>
-                    `)
-                    .join("")}
-
-            </ol>
-
-                    </div>
-
-                `;
-
-
-                projectDetails.scrollIntoView({
-                    behavior: "smooth"
-                });
-
-
-                return;
-            }
-
 
             /* ==================================
                VIEW PROJECT
@@ -872,7 +798,10 @@ if (projectsGrid) {
 
             projectDetails.innerHTML = `
 
-                <div class="project-details-card">
+                <div
+                    class="project-details-card"
+                    data-project-index="${projectIndex}"
+                >
 
                     <h2>
                         ${project.title}
@@ -909,7 +838,6 @@ if (projectsGrid) {
                             : ""
                     }
 
-
                     <button
                         class="project-start-btn"
                         data-project-index="${projectIndex}"
@@ -921,7 +849,6 @@ if (projectsGrid) {
 
             `;
 
-
             projectDetails.scrollIntoView({
                 behavior: "smooth"
             });
@@ -930,6 +857,12 @@ if (projectsGrid) {
     );
 
 }
+
+
+/* ==========================================
+   START PROJECT + PROJECT STEPS
+========================================== */
+
 if (projectDetails) {
 
     projectDetails.addEventListener(
@@ -942,30 +875,26 @@ if (projectDetails) {
             if (!button) {
                 return;
             }
-            if (button.classList.contains("project-step-btn")) {
 
-                const stepIndex =
-                    Number(button.dataset.stepIndex);
+
+            /* ==================================
+               START PROJECT
+            ================================== */
+
+            if (
+                button.classList.contains(
+                    "project-start-btn"
+                )
+            ) {
+
+                const projectIndex =
+                    Number(button.dataset.projectIndex);
 
                 const profile =
                     JSON.parse(savedProfile);
 
                 const selectedProjects =
                     projects[profile.careerGoal];
-
-                const projectDetailsCard =
-                        projectDetails.querySelector(
-                            ".project-details-card"
-                        );
-
-                    if (!projectDetailsCard) {
-                        return;
-                    }
-
-                    const projectIndex =
-                        Number(
-                            projectDetailsCard.dataset.projectIndex
-                        );
 
                 const project =
                     selectedProjects[projectIndex];
@@ -974,95 +903,194 @@ if (projectDetails) {
                     return;
                 }
 
-                if (!projectProgress[project.title]) {
-                    projectProgress[project.title] = {};
+                const steps =
+                    projectSteps[project.title];
+
+                if (!steps) {
+                    return;
                 }
 
+
+                /* Calculate completed steps */
+
+                const completedSteps =
+                    projectProgress[project.title]
+                        ? Object.values(
+                            projectProgress[project.title]
+                        ).filter(
+                            value => value === true
+                        ).length
+                        : 0;
+
+
+                /* Display project steps */
+
+                projectDetails.innerHTML = `
+
+                    <div
+                        class="project-details-card"
+                        data-project-index="${projectIndex}"
+                    >
+
+                        <h2>
+                            ${project.title} - Project Steps
+                        </h2>
+
+                        <p class="project-progress-text">
+                            Progress:
+                            ${completedSteps}
+                            /
+                            ${steps.length}
+                            steps completed
+                        </p>
+
+                        <ol>
+
+                            ${steps
+                                .map((step, index) => {
+
+                                    const isCompleted =
+                                        projectProgress[project.title] &&
+                                        projectProgress[project.title][index];
+
+                                    return `
+
+                                        <li>
+
+                                            <span>
+                                                ${step}
+                                            </span>
+
+                                            <button
+                                                class="project-step-btn"
+                                                data-step-index="${index}"
+                                                ${isCompleted ? "disabled" : ""}
+                                            >
+                                                ${
+                                                    isCompleted
+                                                        ? "✓ Completed"
+                                                        : "Complete"
+                                                }
+                                            </button>
+
+                                        </li>
+
+                                    `;
+
+                                })
+                                .join("")}
+
+                        </ol>
+
+                    </div>
+
+                `;
+
+
+                projectDetails.scrollIntoView({
+                    behavior: "smooth"
+                });
+
+                return;
+            }
+
+
+            /* ==================================
+               COMPLETE PROJECT STEP
+            ================================== */
+
+            if (
+                button.classList.contains(
+                    "project-step-btn"
+                )
+            ) {
+
+                const stepIndex =
+                    Number(button.dataset.stepIndex);
+
+                const projectDetailsCard =
+                    projectDetails.querySelector(
+                        ".project-details-card"
+                    );
+
+                if (!projectDetailsCard) {
+                    return;
+                }
+
+                const projectIndex =
+                    Number(
+                        projectDetailsCard.dataset.projectIndex
+                    );
+
+                const profile =
+                    JSON.parse(savedProfile);
+
+                const selectedProjects =
+                    projects[profile.careerGoal];
+
+                const project =
+                    selectedProjects[projectIndex];
+
+                if (!project) {
+                    return;
+                }
+
+
+                /* Create progress object if needed */
+
+                if (!projectProgress[project.title]) {
+
+                    projectProgress[project.title] = {};
+
+                }
+
+
+                /* Mark step as completed */
+
                 projectProgress[project.title][stepIndex] = true;
+
+
+                /* Save progress */
 
                 localStorage.setItem(
                     "pathpilotProjectProgress",
                     JSON.stringify(projectProgress)
                 );
 
-                button.textContent = "✓ Completed";
+
+                /* Update button */
+
+                button.textContent =
+                    "✓ Completed";
 
                 button.disabled = true;
 
-                return;
+
+                /* Update progress text */
+
+                const completedSteps =
+                    Object.values(
+                        projectProgress[project.title]
+                    ).filter(
+                        value => value === true
+                    ).length;
+
+                const steps =
+                    projectSteps[project.title];
+
+                const progressText =
+                    projectDetails.querySelector(
+                        ".project-progress-text"
+                    );
+
+                if (progressText) {
+
+                    progressText.textContent =
+                        `Progress: ${completedSteps} / ${steps.length} steps completed`;
+
+                }
+
             }
-
-            const projectIndex =
-                Number(button.dataset.projectIndex);
-
-            const profile =
-                JSON.parse(savedProfile);
-
-            const selectedProjects =
-                projects[profile.careerGoal];
-
-            const project =
-                selectedProjects[projectIndex];
-
-            if (!project) {
-                return;
-            }
-
-            const steps =
-                projectSteps[project.title];
-
-            if (!steps) {
-                return;
-            }
-
-            projectDetails.innerHTML = `
-
-                <div class="project-details-card"
-                data-project-index="${projectIndex}">
-
-                    <h2>
-                        ${project.title} - Project Steps
-                    </h2>
-
-                    <ol>
-
-                        ${steps
-                            .map((step, index) => {
-
-                                const isCompleted =
-                                    projectProgress[project.title] &&
-                                    projectProgress[project.title][index];
-
-                                return `
-                                    <li>
-
-                                        <span>
-                                            ${step}
-                                        </span>
-
-                                        <button
-                                            class="project-step-btn"
-                                            data-step-index="${index}"
-                                            ${isCompleted ? "disabled" : ""}
-                                        >
-                                            ${isCompleted ? "✓ Completed" : "Complete"}
-                                        </button>
-
-                                    </li>
-                                `;
-
-                            })
-                            .join("")}
-
-                    </ol>
-
-                </div>
-
-            `;
-
-            projectDetails.scrollIntoView({
-                behavior: "smooth"
-            });
 
         }
     );
