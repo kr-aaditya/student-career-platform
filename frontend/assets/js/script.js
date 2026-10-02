@@ -1796,3 +1796,118 @@ if (moduleLearningContent) {
     );
 
 }
+
+/* ==========================================
+   DASHBOARD - NEXT STEP
+========================================== */
+
+const nextStepTitle =
+    document.getElementById("next-step-title");
+
+const nextStepDescription =
+    document.getElementById("next-step-description");
+
+const nextStepButton =
+    document.getElementById("next-step-btn");
+
+
+if (
+    nextStepTitle &&
+    nextStepDescription &&
+    nextStepButton &&
+    savedProfile
+) {
+
+    const profile =
+        JSON.parse(savedProfile);
+
+    const currentCareer =
+        profile.careerGoal;
+
+    const currentRoadmap =
+        roadmaps[currentCareer];
+
+
+    if (currentRoadmap) {
+
+        /* Get saved learning progress */
+
+        const savedLearningProgress =
+            localStorage.getItem("pathpilotProgress");
+
+        const allProgress =
+            savedLearningProgress
+                ? JSON.parse(savedLearningProgress)
+                : {};
+
+        const careerProgress =
+            allProgress[currentCareer] || {};
+
+
+        /* Find the first incomplete module */
+
+        let nextModuleIndex = -1;
+
+        for (
+            let i = 0;
+            i < currentRoadmap.length;
+            i++
+        ) {
+
+            if (!careerProgress[i]) {
+
+                nextModuleIndex = i;
+                break;
+
+            }
+
+        }
+
+
+        /* ==================================
+           NEXT LEARNING MODULE
+        ================================== */
+
+        if (nextModuleIndex !== -1) {
+
+            const nextModule =
+                currentRoadmap[nextModuleIndex];
+
+            nextStepTitle.textContent =
+                `Continue: ${nextModule}`;
+
+            nextStepDescription.textContent =
+                "Complete this learning module to continue progressing on your career roadmap.";
+
+            nextStepButton.textContent =
+                "Continue Learning";
+
+            nextStepButton.href =
+                "learning.html";
+
+        }
+
+
+        /* ==================================
+           LEARNING COMPLETED
+        ================================== */
+
+        else {
+
+            nextStepTitle.textContent =
+                "Start a Project";
+
+            nextStepDescription.textContent =
+                "You have completed your learning roadmap. Now apply your skills by building a project.";
+
+            nextStepButton.textContent =
+                "View Projects";
+
+            nextStepButton.href =
+                "#projects-grid";
+
+        }
+
+    }
+
+}
