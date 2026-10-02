@@ -686,6 +686,201 @@ const projectSteps = {
         "Evaluate the model",
         "Build the application",
         "Deploy the application"
+    ],
+        "Data Analysis Project": [
+        "Understand the problem",
+        "Find and load the dataset",
+        "Clean and prepare the data",
+        "Explore the dataset",
+        "Analyze patterns and trends",
+        "Create insights",
+        "Present the findings"
+    ],
+
+    "Data Visualization Dashboard": [
+        "Choose the dataset",
+        "Clean and prepare the data",
+        "Identify important metrics",
+        "Create visualizations",
+        "Build the dashboard",
+        "Add useful filters",
+        "Test the dashboard"
+    ],
+
+    "Customer Analysis": [
+        "Understand the business problem",
+        "Load the customer dataset",
+        "Clean and prepare the data",
+        "Explore customer patterns",
+        "Analyze customer behavior",
+        "Create useful insights",
+        "Present the results"
+    ],
+
+    "End-to-End Data Science Project": [
+        "Choose the problem",
+        "Collect the dataset",
+        "Clean and prepare the data",
+        "Perform exploratory data analysis",
+        "Build the analysis or model",
+        "Evaluate the results",
+        "Present the final solution"
+    ],
+        "Portfolio Website": [
+        "Plan the portfolio structure",
+        "Create the HTML pages",
+        "Style the website with CSS",
+        "Add JavaScript interactions",
+        "Make the website responsive",
+        "Test the website",
+        "Deploy the portfolio"
+    ],
+
+    "Task Manager": [
+        "Plan the application",
+        "Build the frontend",
+        "Create the task functionality",
+        "Create the backend API",
+        "Connect the database",
+        "Test the application",
+        "Deploy the application"
+    ],
+
+    "E-Commerce Website": [
+        "Plan the e-commerce features",
+        "Create the product interface",
+        "Build product and cart functionality",
+        "Create the backend API",
+        "Connect the database",
+        "Implement user functionality",
+        "Test and deploy the website"
+    ],
+
+    "Full Stack Application": [
+        "Choose the application idea",
+        "Design the frontend",
+        "Build the backend API",
+        "Connect the database",
+        "Connect frontend and backend",
+        "Test the application",
+        "Deploy the application"
+    ],
+        "Dockerized Application": [
+        "Choose the application",
+        "Create the application",
+        "Write the Dockerfile",
+        "Build the Docker image",
+        "Run the application in a container",
+        "Test the container",
+        "Document the setup"
+    ],
+
+    "CI/CD Pipeline": [
+        "Understand the deployment workflow",
+        "Set up the repository",
+        "Create the build process",
+        "Configure automated testing",
+        "Create the deployment pipeline",
+        "Test the pipeline",
+        "Deploy the application"
+    ],
+
+    "Cloud Deployment": [
+        "Choose a cloud platform",
+        "Prepare the application",
+        "Configure the cloud environment",
+        "Deploy the application",
+        "Configure the required services",
+        "Test the deployment",
+        "Monitor the application"
+    ],
+
+    "DevOps Project": [
+        "Choose the project",
+        "Set up version control",
+        "Containerize the application",
+        "Create the CI/CD pipeline",
+        "Deploy the application",
+        "Add monitoring",
+        "Document the project"
+    ],
+        "Network Security Scanner": [
+        "Understand the security problem",
+        "Learn the required networking concepts",
+        "Design the scanner",
+        "Implement the scanner",
+        "Test it in a controlled environment",
+        "Analyze the results",
+        "Document the project"
+    ],
+
+    "Password Security Tool": [
+        "Understand password security",
+        "Define security requirements",
+        "Design the tool",
+        "Implement password-strength checks",
+        "Test the tool",
+        "Improve the security checks",
+        "Document the project"
+    ],
+
+    "Web Security Project": [
+        "Choose a web security topic",
+        "Understand the vulnerability",
+        "Create a controlled test environment",
+        "Implement the learning project",
+        "Test the security behavior",
+        "Analyze the results",
+        "Document the findings"
+    ],
+
+    "Cybersecurity Lab": [
+        "Define the lab objectives",
+        "Set up the lab environment",
+        "Configure the required tools",
+        "Perform controlled security exercises",
+        "Analyze the results",
+        "Improve the lab",
+        "Document the environment"
+    ],
+        "To-Do Mobile App": [
+        "Plan the application",
+        "Design the mobile interface",
+        "Create the task functionality",
+        "Add data storage",
+        "Test the application",
+        "Fix issues",
+        "Build the final application"
+    ],
+
+    "Expense Tracker": [
+        "Plan the application",
+        "Design the interface",
+        "Create expense functionality",
+        "Add data storage",
+        "Add expense summaries",
+        "Test the application",
+        "Build the final application"
+    ],
+
+    "Weather App": [
+        "Plan the application",
+        "Design the mobile interface",
+        "Find a weather API",
+        "Connect the API",
+        "Display weather data",
+        "Handle errors and loading states",
+        "Test the application"
+    ],
+
+    "Full Mobile Application": [
+        "Choose the application idea",
+        "Plan the features",
+        "Design the user interface",
+        "Implement the application",
+        "Connect APIs and databases",
+        "Test the application",
+        "Build and deploy the application"
     ]
 
 };
@@ -1370,7 +1565,422 @@ const learningContent = {
 
         ]
 
-    }
+    },
+        "Python for Data Science": {
+
+        title: "Python for Data Science",
+
+        description:
+            "Learn how Python is used to work with data and solve data science problems.",
+
+        topics: [
+
+            "Python Data Types and Collections",
+
+            "NumPy for Data Analysis",
+
+            "Pandas for Data Manipulation",
+
+            "Working with CSV Data",
+
+            "Basic Data Analysis"
+
+        ]
+
+    },
+
+
+    "Data Visualization": {
+
+        title: "Data Visualization",
+
+        description:
+            "Learn how to represent and understand data using visualizations.",
+
+        topics: [
+
+            "Introduction to Data Visualization",
+
+            "Matplotlib",
+
+            "Seaborn",
+
+            "Charts and Graphs",
+
+            "Interpreting Visualizations"
+
+        ]
+
+    },
+
+
+    "Statistics": {
+
+        title: "Statistics",
+
+        description:
+            "Learn the statistical concepts needed to analyze and understand data.",
+
+        topics: [
+
+            "Mean, Median and Mode",
+
+            "Variance and Standard Deviation",
+
+            "Probability Basics",
+
+            "Correlation",
+
+            "Distributions"
+
+        ]
+
+    },
+
+
+    "Data Science Projects": {
+
+        title: "Data Science Projects",
+
+        description:
+            "Apply your data science knowledge by working on practical projects.",
+
+        topics: [
+
+            "Choosing a Dataset",
+
+            "Data Cleaning",
+
+            "Exploratory Data Analysis",
+
+            "Data Visualization",
+
+            "Presenting Insights"
+
+        ]
+
+    },
+        "HTML & CSS": {
+
+        title: "HTML & CSS",
+
+        description:
+            "Learn the fundamentals of building and styling web pages.",
+
+        topics: [
+            "HTML Structure and Elements",
+            "Forms and Semantic HTML",
+            "CSS Selectors and Properties",
+            "Flexbox and Grid",
+            "Responsive Web Design"
+        ]
+
+    },
+
+    "JavaScript": {
+
+        title: "JavaScript",
+
+        description:
+            "Learn JavaScript fundamentals and use it to create interactive web applications.",
+
+        topics: [
+            "Variables and Data Types",
+            "Functions",
+            "Arrays and Objects",
+            "DOM Manipulation",
+            "Events and Fetch API"
+        ]
+
+    },
+
+    "Frontend Development": {
+
+        title: "Frontend Development",
+
+        description:
+            "Learn how to build complete interactive frontend applications.",
+
+        topics: [
+            "DOM and Events",
+            "API Integration",
+            "Async JavaScript",
+            "Frontend Project Structure",
+            "Building Interactive Interfaces"
+        ]
+
+    },
+
+    "Backend Development": {
+
+        title: "Backend Development",
+
+        description:
+            "Learn how servers, APIs and databases power modern web applications.",
+
+        topics: [
+            "Introduction to Backend Development",
+            "Node.js",
+            "Express.js",
+            "REST APIs",
+            "Connecting to a Database"
+        ]
+
+    },
+
+    "Full Stack Project": {
+
+        title: "Full Stack Project",
+
+        description:
+            "Build a complete web application using frontend, backend and database technologies.",
+
+        topics: [
+            "Plan the Application",
+            "Build the Frontend",
+            "Create the Backend API",
+            "Connect the Database",
+            "Test and Deploy the Application"
+        ]
+
+    },
+        "Cloud Fundamentals": {
+
+        title: "Cloud Fundamentals",
+
+        description:
+            "Learn the core concepts behind cloud computing and modern cloud platforms.",
+
+        topics: [
+            "What is Cloud Computing",
+            "Cloud Service Models",
+            "Cloud Deployment Models",
+            "Virtual Machines",
+            "Cloud Storage"
+        ]
+
+    },
+
+    "Linux Fundamentals": {
+
+        title: "Linux Fundamentals",
+
+        description:
+            "Learn the Linux basics commonly used in cloud and DevOps environments.",
+
+        topics: [
+            "Linux File System",
+            "Basic Linux Commands",
+            "File Permissions",
+            "Processes",
+            "Shell Basics"
+        ]
+
+    },
+
+    "Networking": {
+
+        title: "Networking",
+
+        description:
+            "Understand the networking concepts required for cloud and DevOps.",
+
+        topics: [
+            "IP Addresses",
+            "DNS",
+            "HTTP and HTTPS",
+            "Ports and Protocols",
+            "Basic Networking Commands"
+        ]
+
+    },
+
+    "Docker": {
+
+        title: "Docker",
+
+        description:
+            "Learn how to package and run applications using containers.",
+
+        topics: [
+            "What is Docker",
+            "Images and Containers",
+            "Dockerfile",
+            "Docker Commands",
+            "Docker Compose"
+        ]
+
+    },
+
+    "CI/CD & DevOps Project": {
+
+        title: "CI/CD & DevOps Project",
+
+        description:
+            "Apply DevOps concepts by building an automated development and deployment workflow.",
+
+        topics: [
+            "Version Control",
+            "Build Automation",
+            "Continuous Integration",
+            "Continuous Deployment",
+            "Deploying the Project"
+        ]
+
+    },
+        "Networking Fundamentals": {
+
+        title: "Networking Fundamentals",
+
+        description:
+            "Learn the networking concepts that form the foundation of cybersecurity.",
+
+        topics: [
+            "Network Types",
+            "IP Addresses",
+            "Ports and Protocols",
+            "DNS",
+            "Basic Network Security"
+        ]
+
+    },
+
+    "Cybersecurity Basics": {
+
+        title: "Cybersecurity Basics",
+
+        description:
+            "Learn the fundamental concepts of protecting systems, networks and data.",
+
+        topics: [
+            "Introduction to Cybersecurity",
+            "Common Threats",
+            "Authentication and Authorization",
+            "Encryption Basics",
+            "Security Best Practices"
+        ]
+
+    },
+
+    "Web Security": {
+
+        title: "Web Security",
+
+        description:
+            "Learn the fundamentals of securing web applications.",
+
+        topics: [
+            "Web Security Fundamentals",
+            "Input Validation",
+            "Authentication Security",
+            "Common Web Vulnerabilities",
+            "Secure Coding Practices"
+        ]
+
+    },
+
+    "Security Projects": {
+
+        title: "Security Projects",
+
+        description:
+            "Apply cybersecurity concepts through practical and controlled projects.",
+
+        topics: [
+            "Choose a Security Problem",
+            "Plan the Project",
+            "Build the Security Tool",
+            "Test the Project",
+            "Document the Results"
+        ]
+
+    },
+
+
+    "Programming Fundamentals": {
+
+        title: "Programming Fundamentals",
+
+        description:
+            "Build the programming foundation needed for mobile application development.",
+
+        topics: [
+            "Variables and Data Types",
+            "Conditions and Loops",
+            "Functions",
+            "Arrays and Objects",
+            "Basic Programming Concepts"
+        ]
+
+    },
+
+    "Mobile UI Development": {
+
+        title: "Mobile UI Development",
+
+        description:
+            "Learn how to design and build user interfaces for mobile applications.",
+
+        topics: [
+            "Mobile UI Fundamentals",
+            "Layouts",
+            "Buttons and Forms",
+            "Navigation",
+            "Responsive Mobile Design"
+        ]
+
+    },
+
+    "App Navigation": {
+
+        title: "App Navigation",
+
+        description:
+            "Learn how users move between screens and features in a mobile application.",
+
+        topics: [
+            "Screen Navigation",
+            "Navigation Menus",
+            "Passing Data Between Screens",
+            "Navigation State",
+            "Building User Flows"
+        ]
+
+    },
+
+    "APIs & Databases": {
+
+        title: "APIs & Databases",
+
+        description:
+            "Learn how mobile applications communicate with APIs and store data.",
+
+        topics: [
+            "Introduction to APIs",
+            "HTTP Requests",
+            "JSON Data",
+            "Database Fundamentals",
+            "Connecting an App to an API"
+        ]
+
+    },
+
+    "Mobile App Project": {
+
+        title: "Mobile App Project",
+
+        description:
+            "Build a complete mobile application by applying the concepts you have learned.",
+
+        topics: [
+            "Plan the Application",
+            "Design the User Interface",
+            "Implement the Features",
+            "Connect APIs and Data",
+            "Test the Application"
+        ]
+
+    },
 
 };
 
